@@ -1,5 +1,4 @@
 % Created by Diego Alvarez-Estevez (http://dalvarezestevez.com)
-% Last modified 19/01/2018
 
 % Trims, justifies, and fills with blanks a character vector
 

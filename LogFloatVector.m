@@ -1,5 +1,4 @@
 % Created by Diego Alvarez-Estevez (http://dalvarezestevez.com)
-% Last modified 19/01/2018
 
 % LogFloat conversion (see www.edfplus.info/specs/edffloat.html for
 % more information)
@@ -22,9 +21,13 @@ function out = LogFloatVector(vector, Y0, A)
 out = zeros(size(vector));
 
 r = (log10(vector(vector > Y0)) - log10(Y0)) / A;
-out(vector > Y0) = int16(round(min(r, intmax('int16'))));
+if not(isempty(r))
+    out(vector > Y0) = int16(round(min(r, intmax('int16'))));
+end
 
 r = (-log10((-1)*vector(vector < Y0)) + log10(Y0)) / A;
-out(vector < Y0) = int16(round(max(r, -intmax('int16'))));
+if not(isempty(r))
+    out(vector < Y0) = int16(round(max(r, -intmax('int16'))));
+end
 
 % Those with zero value at input remain zero at output
